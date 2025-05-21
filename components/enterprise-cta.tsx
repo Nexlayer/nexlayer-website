@@ -72,7 +72,7 @@ export default function EnterpriseCTA() {
                   Get started
                 </a>
                 <a
-                  href="https://nexlayer.com/playground"
+                  href="/playground"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="border border-white/10 bg-transparent hover:bg-white/5 text-white h-12 rounded-md px-8 text-lg flex items-center justify-center"

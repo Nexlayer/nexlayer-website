@@ -286,7 +286,7 @@ export default function SolutionSection() {
                     <h4 className="text-xl font-bold text-white">Start from scratch or modify a starter template.</h4>
                   </div>
                   <a
-                    href="https://nexlayer.com/playground"
+                    href="/playground"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="bg-[#23B6CB] hover:bg-[#23B6CB]/90 text-black font-medium px-4 py-2 rounded-md transition-colors flex items-center gap-1"
