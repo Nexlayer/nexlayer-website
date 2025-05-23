@@ -1,0 +1,8 @@
+   application:
+    name: nexlayer-website
+    pods:
+    - name: nexlayer-website
+      image: ghcr.io/nexlayer/nexlayer-website:latest
+      path: "/"
+      servicePorts:
+      - 80
