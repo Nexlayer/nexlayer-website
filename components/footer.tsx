@@ -36,7 +36,7 @@ export default function Footer() {
   ]
 
   return (
-    <footer className="py-16 relative border-t border-white/10">
+    <footer className="relative border-t border-white/10">
       <div className="section-container">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
           <div className="col-span-2 md:col-span-1">

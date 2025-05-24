@@ -332,7 +332,7 @@ export default function DeploymentBottleneck() {
   }
 
   return (
-    <section className="py-24 relative">
+    <section className="relative">
       <div className="section-container relative overflow-hidden bg-gradient-to-b from-red-900/10 to-transparent border border-red-500/20 rounded-xl shadow-[0_0_30px_rgba(220,38,38,0.2)]">
         <div className="absolute inset-0 bg-grid-pattern opacity-10 pointer-events-none"></div>
         <motion.div

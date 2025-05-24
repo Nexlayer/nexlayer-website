@@ -310,7 +310,7 @@ export default function AICodeEditorDemo() {
   }, [isPlaying, currentStep, fullPrompt, typedText])
 
   return (
-    <section className="py-24 relative">
+    <section className="relative">
       <div className="section-container">
         <h2 className="text-4xl md:text-5xl font-bold mb-8 text-center gradient-text">
           I built something cool with AI.
