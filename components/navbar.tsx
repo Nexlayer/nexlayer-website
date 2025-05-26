@@ -39,7 +39,7 @@ export default function Navbar() {
         <div className="flex items-center gap-2">
           <span className="px-4 py-1 bg-yellow-400 text-black text-sm font-bold rounded-full flex items-center">beta</span>
           <Link
-            href="/signin"
+            href="https://app.nexlayer.io/v2/login"
             className="text-white px-4 py-2"
           >
             Login
