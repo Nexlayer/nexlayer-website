@@ -4,6 +4,9 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import Script from "next/script";
+import { NotificationProvider } from "@/components/launch-notifications";
+import NotificationsView from "@/components/notification-view"
+import Navbar from "@/components/navbar"
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -58,14 +61,18 @@ export default function RootLayout({
         <link rel="manifest" href="/site.webmanifest"></link>
       </head>
       <body className={`${inter.className} bg-near-black`}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          enableSystem={false}
-          disableTransitionOnChange
-        >
-          {children}
-        </ThemeProvider>
+        <NotificationProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="dark"
+            enableSystem={false}
+            disableTransitionOnChange
+          >
+            <Navbar />
+            {children}
+            <NotificationsView />
+          </ThemeProvider>
+        </NotificationProvider>
       </body>
     </html>
   );
