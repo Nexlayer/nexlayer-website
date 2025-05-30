@@ -9,7 +9,6 @@ export default function EnterpriseCTA() {
     <section className="pb-16 relative overflow-hidden">
       <div className="section-container mx-auto px-4 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Left side: Text and metrics */}
           <div>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
