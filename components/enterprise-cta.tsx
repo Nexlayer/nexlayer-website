@@ -1,10 +1,15 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import { Shield } from "lucide-react"
-import GlobeDemo from "./globe-demo"
+import { motion } from "framer-motion";
+import { Shield } from "lucide-react";
+import GlobeDemo from "./globe-demo";
+import { useNotifications } from "@/components/launch-notifications";
 
 export default function EnterpriseCTA() {
+  const baseCount = 9369;
+  const { notifications } = useNotifications();
+  const deploymentCount = baseCount + notifications.length;
+
   return (
     <section className="pb-16 relative overflow-hidden">
       <div className="section-container mx-auto px-4 relative z-10">
@@ -16,9 +21,12 @@ export default function EnterpriseCTA() {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <h3 className="text-sm font-semibold tracking-wider text-[#23B6CB] uppercase mb-2">Built for scale</h3>
+              <h3 className="text-sm font-semibold tracking-wider text-[#23B6CB] uppercase mb-2">
+                Built for scale
+              </h3>
               <h2 className="text-4xl md:text-5xl font-bold mb-6">
-                <span className="text-[#23B6CB]">Enterprise</span> grade infrastructure
+                <span className="text-[#23B6CB]">Enterprise</span> grade
+                infrastructure
               </h2>
 
               <div className="flex flex-wrap gap-3 mb-8">
@@ -38,20 +46,36 @@ export default function EnterpriseCTA() {
 
               <div className="grid grid-cols-2 gap-6 mb-12">
                 <div className="p-4 bg-black/30 backdrop-blur-sm rounded-lg border border-white/5">
-                  <div className="text-3xl font-bold text-white mb-1">99.99%</div>
-                  <div className="text-xs text-gray-400 uppercase tracking-wider">Uptime</div>
+                  <div className="text-3xl font-bold text-white mb-1">
+                    99.99%
+                  </div>
+                  <div className="text-xs text-gray-400 uppercase tracking-wider">
+                    Uptime
+                  </div>
                 </div>
                 <div className="p-4 bg-black/30 backdrop-blur-sm rounded-lg border border-white/5">
-                  <div className="text-3xl font-bold text-white mb-1">100ms</div>
-                  <div className="text-xs text-gray-400 uppercase tracking-wider">Latency</div>
+                  <div className="text-3xl font-bold text-white mb-1">
+                    100ms
+                  </div>
+                  <div className="text-xs text-gray-400 uppercase tracking-wider">
+                    Latency
+                  </div>
                 </div>
                 <div className="p-4 bg-black/30 backdrop-blur-sm rounded-lg border border-white/5">
-                  <div className="text-3xl font-bold text-white mb-1">9,369</div>
-                  <div className="text-xs text-gray-400 uppercase tracking-wider">Deployments</div>
+                  <div className="text-3xl font-bold text-white mb-1">
+                    {deploymentCount.toLocaleString()}
+                  </div>
+                  <div className="text-xs text-gray-400 uppercase tracking-wider">
+                    Deployments
+                  </div>
                 </div>
                 <div className="p-4 bg-black/30 backdrop-blur-sm rounded-lg border border-white/5">
-                  <div className="text-3xl font-bold text-white mb-1">100K+</div>
-                  <div className="text-xs text-gray-400 uppercase tracking-wider">Builders</div>
+                  <div className="text-3xl font-bold text-white mb-1">
+                    100K+
+                  </div>
+                  <div className="text-xs text-gray-400 uppercase tracking-wider">
+                    Builders
+                  </div>
                 </div>
               </div>
 
@@ -59,7 +83,10 @@ export default function EnterpriseCTA() {
                 Ready to <span className="text-[#23B6CB]">ship</span>?
               </h3>
               <p className="text-gray-300 mb-6">
-              Help us shape the future of autonomous deployments. We're in early beta — so no registration gates to try it first. No credit card. Just deploy, and tell us what breaks.</p>
+                Help us shape the future of autonomous deployments. We're in
+                early beta — so no registration gates to try it first. No credit
+                card. Just deploy, and tell us what breaks.
+              </p>
 
               <div className="flex flex-col sm:flex-row gap-4">
                 <a
@@ -80,7 +107,9 @@ export default function EnterpriseCTA() {
                 </a>
               </div>
 
-              <p className="text-xs text-gray-500 mt-4">No credit card required</p>
+              <p className="text-xs text-gray-500 mt-4">
+                No credit card required
+              </p>
             </motion.div>
           </div>
 
@@ -97,5 +126,5 @@ export default function EnterpriseCTA() {
         </div>
       </div>
     </section>
-  )
+  );
 }
