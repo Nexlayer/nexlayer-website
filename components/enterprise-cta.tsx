@@ -46,7 +46,7 @@ export default function EnterpriseCTA() {
                   <div className="text-xs text-gray-400 uppercase tracking-wider">Latency</div>
                 </div>
                 <div className="p-4 bg-black/30 backdrop-blur-sm rounded-lg border border-white/5">
-                  <div className="text-3xl font-bold text-white mb-1">1 Billion</div>
+                  <div className="text-3xl font-bold text-white mb-1">9,369</div>
                   <div className="text-xs text-gray-400 uppercase tracking-wider">Deployments</div>
                 </div>
                 <div className="p-4 bg-black/30 backdrop-blur-sm rounded-lg border border-white/5">
@@ -80,7 +80,7 @@ export default function EnterpriseCTA() {
                 </a>
               </div>
 
-              <p className="text-xs text-gray-500 mt-4">No credit card required • 50GB free monthly</p>
+              <p className="text-xs text-gray-500 mt-4">No credit card required</p>
             </motion.div>
           </div>
 
