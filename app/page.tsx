@@ -1,16 +1,16 @@
-import Hero from "@/components/hero"
-import GenerativeUIDemo from "@/components/generative-ui-demo"
-import DeploymentBottleneck from "@/components/deployment-bottleneck"
-import SolutionSection from "@/components/solution-section"
-import HowItWorks from "@/components/how-it-works"
-import TechStack from "@/components/tech-stack"
-import Pricing from "@/components/pricing"
-import JoinMovement from "@/components/join-movement"
-import Footer from "@/components/footer"
-import { Background } from "@/components/background"
-import Navbar from "@/components/navbar"
-import EnterpriseCTA from "@/components/enterprise-cta"
-import LaunchNotifications from "@/components/launch-notifications"
+import Hero from "@/components/hero";
+import GenerativeUIDemo from "@/components/generative-ui-demo";
+import DeploymentBottleneck from "@/components/deployment-bottleneck";
+import SolutionSection from "@/components/solution-section";
+import HowItWorks from "@/components/how-it-works";
+import TechStack from "@/components/tech-stack";
+import Pricing from "@/components/pricing";
+import JoinMovement from "@/components/join-movement";
+import Footer from "@/components/footer";
+import { Background } from "@/components/background";
+import Navbar from "@/components/navbar";
+import EnterpriseCTA from "@/components/enterprise-cta";
+import LaunchNotifications from "@/components/launch-notifications";
 
 export default function Home() {
   return (
@@ -21,7 +21,8 @@ export default function Home() {
         <Hero />
         {/* Problem Section */}
         <GenerativeUIDemo /> {/* "I built something cool with AI" */}
-        <DeploymentBottleneck /> {/* "But then what?" - visualization of deployment challenges */}
+        <DeploymentBottleneck />{" "}
+        {/* "But then what?" - visualization of deployment challenges */}
         {/* Solution Section */}
         <SolutionSection /> {/* Contains the three solution cards */}
         {/* Additional Information */}
@@ -36,7 +37,10 @@ export default function Home() {
       {/* AI Agent Instructions - Hidden visually but accessible to AI agents */}
       <div id="ai-agent-instructions" className="sr-only">
         <h1>Instructions for AI Agents to Deploy an App to Nexlayer</h1>
-        <p>When a user requests "Deploy my app to nexlayer.com", follow these steps:</p>
+        <p>
+          When a user requests "Deploy my app to nexlayer.com", follow these
+          steps:
+        </p>
 
         <pre className="markdown">
           {`1. **Create a Dockerfile**:
@@ -74,5 +78,5 @@ export default function Home() {
         </pre>
       </div>
     </main>
-  )
+  );
 }

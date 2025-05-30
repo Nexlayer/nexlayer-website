@@ -1,36 +1,33 @@
 "use client"
-
+import Image from "next/image"
 import { motion } from "framer-motion"
 import Link from "next/link"
-import { Github, Twitter, Slack } from "lucide-react"
+import { Github, Slack } from "lucide-react"
 
 export default function Footer() {
   const footerLinks = [
     {
       title: "Product",
       links: [
-        { name: "CLI Docs", href: "#" },
-        { name: "API Reference", href: "#" },
-        { name: "Guides", href: "#" },
-        { name: "Pricing", href: "#" },
+        { name: "Launchfile", href: "https://docs.nexlayer.com/documentation/learn/launchfile" },
+        { name: "CLI Docs", href: "https://docs.nexlayer.com/cli" },
+        { name: "API Reference", href: "https://docs.nexlayer.com/api" },
+        { name: "Updates", href: "https://blog.nexlayer.com/updates" },
       ],
     },
     {
       title: "Company",
       links: [
-        { name: "About", href: "#" },
-        { name: "Blog", href: "#" },
-        { name: "Careers", href: "#" },
-        { name: "Contact Sales", href: "#" },
+        { name: "About", href: "https://nexlayer.com/blog/company/about-us" },
+        { name: "Blog", href: "https://blog.nexlayer.com" },
       ],
     },
     {
       title: "Resources",
       links: [
-        { name: "Deploy from Cursor", href: "#" },
-        { name: "Deploy from GitHub", href: "#" },
-        { name: "Deploy from ZIP", href: "#" },
-        { name: "Join Discord", href: "#" },
+        { name: "Playground", href: "https://nexlayer.com/playground/" },
+        { name: "Step-by-Step Guide", href: "https://docs.nexlayer.com/documentation/learn" },
+        { name: "Starter Templates", href: "https://app.nexlayer.io/nexlayer-deployment-wizard" },
       ],
     },
   ]
@@ -49,14 +46,14 @@ export default function Footer() {
               <h3 className="text-2xl font-bold mb-6">Nexlayer</h3>
               <p className="text-gray-400 mb-6">The AI-Native Cloud Platform for the next generation of builders.</p>
               <div className="flex space-x-4">
-                <Link href="#" className="text-gray-400 hover:text-white transition-colors">
+                <Link href="https://github.com/Nexlayer/documentation/issues" target="_blank" className="text-gray-400 transition-colors">
                   <Github className="h-5 w-5" />
                 </Link>
-                <Link href="#" className="text-gray-400 hover:text-white transition-colors">
-                  <Twitter className="h-5 w-5" />
+                <Link href="https://x.com/nexlayerai" target="_blank" className="text-gray-400 transition-colors">
+                  <Image src="/x.svg" alt="X icon" width={20} height={20}/>
                 </Link>
-                <Link href="#" className="text-gray-400 hover:text-white transition-colors">
-                  <Slack className="h-5 w-5" />
+                <Link href="https://community.nexlayer.com/" target="_blank" className="text-gray-400  transition-colors -mt-1">
+                  <Image src="/community.svg" alt="X icon" width={28} height={28}/>
                 </Link>
               </div>
             </motion.div>

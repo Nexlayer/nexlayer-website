@@ -1,8 +1,6 @@
 "use client"
 
-import { useState, useEffect, useRef } from "react"
-import { motion, AnimatePresence } from "framer-motion"
-import DeploymentPanel from "./deployment-panel"
+import React, { createContext, useContext, useState, useEffect, useRef } from "react"
 
 export type Deployment = {
   id: number
@@ -14,8 +12,26 @@ export type Deployment = {
   status: "completed" | "in-progress" | "failed"
 }
 
-// Map cities to their country codes for flag emojis
-const cityToCountry: Record<string, { country: string; flag: string }> = {
+interface NotificationContextProps {
+  notifications: Deployment[]
+  unreadCount: number
+  visibleNotifications: Deployment[]
+  isPanelOpen: boolean
+  setIsPanelOpen: (val: boolean) => void
+  markAllRead: () => void
+}
+
+const NotificationContext = createContext<NotificationContextProps | null>(null)
+
+export const NotificationProvider = ({ children }: { children: React.ReactNode }) => {
+  const [notifications, setNotifications] = useState<Deployment[]>([])
+  const [visibleNotifications, setVisibleNotifications] = useState<Deployment[]>([])
+  const [isPanelOpen, setIsPanelOpen] = useState(false)
+  const [unreadCount, setUnreadCount] = useState(0)
+  const nextIdRef = useRef(0)
+  const maxVisibleNotifications = 1
+
+ const cityToCountry: Record<string, { country: string; flag: string }> = {
   "New York City": { country: "United States", flag: "🇺🇸" },
   "San Francisco": { country: "United States", flag: "🇺🇸" },
   Austin: { country: "United States", flag: "🇺🇸" },
@@ -38,9 +54,8 @@ const cityToCountry: Record<string, { country: string; flag: string }> = {
   "Hong Kong": { country: "Hong Kong", flag: "🇭🇰" },
 }
 
-const cities = Object.keys(cityToCountry)
-
-const products = [
+  const cities = Object.keys(cityToCountry)
+  const products = [
   "neural network",
   "AI assistant",
   "RAG system",
@@ -63,20 +78,12 @@ const products = [
   "code generator",
 ]
 
-export default function LaunchNotifications() {
-  const [notifications, setNotifications] = useState<Deployment[]>([])
-  const [visibleNotifications, setVisibleNotifications] = useState<Deployment[]>([])
-  const [isPanelOpen, setIsPanelOpen] = useState(false)
-  const nextIdRef = useRef(0)
-  const maxVisibleNotifications = 1
-
-  // Generate a random notification
   const generateNotification = (): Deployment => {
     const city = cities[Math.floor(Math.random() * cities.length)]
     const product = products[Math.floor(Math.random() * products.length)]
     const { country, flag } = cityToCountry[city]
     const statuses: Deployment["status"][] = ["completed", "in-progress", "failed"]
-    const status = statuses[Math.floor(Math.random() * (statuses.length - 0.2))] // Make completed more likely
+    const status = statuses[Math.floor(Math.random() * (statuses.length - 0.2))]
 
     return {
       id: nextIdRef.current++,
@@ -90,77 +97,47 @@ export default function LaunchNotifications() {
   }
 
   useEffect(() => {
-    // Add initial notification
-    const initial = generateNotification()
-    setNotifications([initial])
-    setVisibleNotifications([initial])
+    const first = generateNotification()
+    setNotifications([first])
+    setVisibleNotifications([first])
+    setUnreadCount(1)
 
-    // Set up interval to add new notifications every 8 seconds
     const interval = setInterval(() => {
       const newNotification = generateNotification()
 
-      setNotifications((prev) => [newNotification, ...prev].slice(0, 100)) // Keep last 100 deployments
-
+      setNotifications((prev) => [newNotification, ...prev].slice(0, 100))
       setVisibleNotifications((prev) => {
-        // Remove notifications older than 9 seconds
-        const filtered = prev.filter((n) => Date.now() - n.timestamp < 9000)
-        // Limit the number of notifications to prevent performance issues
-        const limitedFiltered = filtered.slice(-maxVisibleNotifications + 1)
-        // Add new notification
-        return [...limitedFiltered, newNotification]
+        const recent = prev.filter((n) => Date.now() - n.timestamp < 9000).slice(-maxVisibleNotifications + 1)
+        return [...recent, newNotification]
       })
+      setUnreadCount((prev) => Math.min(prev + 1, 999))
     }, 8000)
 
     return () => clearInterval(interval)
   }, [])
 
-  const handleNotificationClick = () => {
-    setIsPanelOpen(true)
-  }
+  const markAllRead = () => setUnreadCount(0)
 
   return (
-    <>
-      <div className="fixed bottom-0 right-0 z-40 p-4 overflow-hidden h-[70vh] w-[300px]">
-        <AnimatePresence>
-          {visibleNotifications.map((notification) => (
-            <motion.div
-              key={notification.id}
-              initial={{ opacity: 0, y: 100, scale: 0.8 }}
-              animate={{
-                opacity: [0, 1, 1, 0.8, 0],
-                y: -400,
-                scale: 1,
-              }}
-              exit={{ opacity: 0 }}
-              transition={{
-                duration: 7.5,
-                ease: "easeOut",
-                times: [0, 0.1, 0.7, 0.9, 1],
-              }}
-              className="absolute bottom-0 right-8 mb-4 glassmorphism rounded-lg p-3 text-sm max-w-[250px] flex items-center gap-2 shadow-lg cursor-pointer hover:bg-white/5"
-              onClick={handleNotificationClick}
-            >
-              <div className="flex items-center gap-2">
-                <div
-                  className={`w-2 h-2 rounded-full animate-pulse flex-shrink-0 ${
-                    notification.status === "completed"
-                      ? "bg-neon-aqua"
-                      : notification.status === "in-progress"
-                        ? "bg-amber-400"
-                        : "bg-red-500"
-                  }`}
-                />
-                <span className="text-lg" role="img" aria-label="country flag">
-                  {notification.flag}
-                </span>
-              </div>
-              <p className="text-soft-white text-xs">Product launched 6 seconds ago in {notification.city}</p>
-            </motion.div>
-          ))}
-        </AnimatePresence>
-      </div>
-
-      <DeploymentPanel isOpen={isPanelOpen} onClose={() => setIsPanelOpen(false)} deployments={notifications} />
-    </>
+    <NotificationContext.Provider
+      value={{
+        notifications,
+        unreadCount,
+        visibleNotifications,
+        isPanelOpen,
+        setIsPanelOpen,
+        markAllRead,
+      }}
+    >
+      {children}
+    </NotificationContext.Provider>
   )
+}
+
+export default NotificationProvider
+
+export const useNotifications = () => {
+  const context = useContext(NotificationContext)
+  if (!context) throw new Error("useNotifications must be used inside NotificationProvider")
+  return context
 }
