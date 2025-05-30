@@ -74,7 +74,7 @@ export default function Navbar() {
               </div>
             )}{" "}
           </div>
-          <Link href="/signin" className="text-white hover:text-[#23b6ca]">
+          <Link href="https://app.nexlayer.io/auth" className="text-white hover:text-[#23b6ca]">
             Login
           </Link>
         </div>
