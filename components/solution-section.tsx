@@ -287,7 +287,6 @@ export default function SolutionSection() {
                   </div>
                   <a
                     href="/playground"
-                    target="_blank"
                     rel="noopener noreferrer"
                     className="bg-[#23B6CB] hover:bg-[#23B6CB]/90 text-black font-medium px-4 py-2 rounded-md transition-colors flex items-center gap-1"
                   >

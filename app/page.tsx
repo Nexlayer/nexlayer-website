@@ -31,7 +31,6 @@ export default function Home() {
         <Pricing />
         <JoinMovement />
         <EnterpriseCTA />
-        <Footer />
         <LaunchNotifications />
       </div>
       {/* AI Agent Instructions - Hidden visually but accessible to AI agents */}
