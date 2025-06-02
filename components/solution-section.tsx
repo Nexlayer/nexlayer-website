@@ -125,7 +125,7 @@ export default function SolutionSection() {
   }
 
   return (
-    <section ref={sectionRef} className="py-24 relative min-h-screen">
+    <section ref={sectionRef} className="relative min-h-screen">
       <div className="section-container">
         <motion.div
           className="text-center mb-16"

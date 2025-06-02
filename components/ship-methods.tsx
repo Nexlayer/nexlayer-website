@@ -6,7 +6,7 @@ import { MessageSquare, Terminal, MousePointer } from "lucide-react"
 
 export default function ShipMethods() {
   return (
-    <section className="py-24 relative">
+    <section className="relative">
       <div className="section-container">
         <motion.div
           className="text-center mb-16"

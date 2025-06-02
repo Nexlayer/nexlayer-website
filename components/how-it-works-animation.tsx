@@ -47,7 +47,7 @@ export default function HowItWorksAnimation() {
   ]
 
   return (
-    <section className="py-24 relative">
+    <section className="relative">
       <div className="section-container">
         <motion.div
           className="text-center mb-12"
