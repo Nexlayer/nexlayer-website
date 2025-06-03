@@ -96,9 +96,6 @@ export default function Footer() {
             <Link href="/legal/terms" className="text-gray-500 hover:text-white transition-colors text-sm">
               Terms of Service
             </Link>
-            <Link href="#" className="text-gray-500 hover:text-white transition-colors text-sm">
-              Cookie Policy
-            </Link>
           </div>
         </motion.div>
       </div>
