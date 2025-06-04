@@ -12,14 +12,14 @@ export default function Footer() {
         { name: "Launchfile", href: "https://docs.nexlayer.com/documentation/learn/launchfile" },
         { name: "CLI Docs", href: "https://docs.nexlayer.com/cli" },
         { name: "API Reference", href: "https://docs.nexlayer.com/api" },
-        { name: "Updates", href: "https://blog.nexlayer.com/updates" },
+        { name: "Updates", href: "https://community.nexlayer.com/" },
       ],
     },
     {
       title: "Company",
       links: [
-        { name: "About", href: "https://nexlayer.com/blog/company/about-us" },
-        { name: "Blog", href: "https://blog.nexlayer.com" },
+        { name: "About", href: "/about" },
+        { name: "Blog", href: "https://community.nexlayer.com/" },
       ],
     },
     {
@@ -90,14 +90,11 @@ export default function Footer() {
         >
           <p className="text-gray-500 mb-4 md:mb-0">© {new Date().getFullYear()} Nexlayer. All rights reserved.</p>
           <div className="flex space-x-6">
-            <Link href="#" className="text-gray-500 hover:text-white transition-colors text-sm">
+            <Link href="/legal/privacy" className="text-gray-500 hover:text-white transition-colors text-sm">
               Privacy Policy
             </Link>
-            <Link href="#" className="text-gray-500 hover:text-white transition-colors text-sm">
+            <Link href="/legal/terms" className="text-gray-500 hover:text-white transition-colors text-sm">
               Terms of Service
-            </Link>
-            <Link href="#" className="text-gray-500 hover:text-white transition-colors text-sm">
-              Cookie Policy
             </Link>
           </div>
         </motion.div>

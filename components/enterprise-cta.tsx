@@ -71,10 +71,10 @@ export default function EnterpriseCTA() {
                 </div>
                 <div className="p-4 bg-black/30 backdrop-blur-sm rounded-lg border border-white/5">
                   <div className="text-3xl font-bold text-white mb-1">
-                    100K+
+                    60s
                   </div>
                   <div className="text-xs text-gray-400 uppercase tracking-wider">
-                    Builders
+                    Zero to Global
                   </div>
                 </div>
               </div>
@@ -99,7 +99,6 @@ export default function EnterpriseCTA() {
                 </a>
                 <a
                   href="/playground"
-                  target="_blank"
                   rel="noopener noreferrer"
                   className="border border-white/10 bg-transparent hover:bg-white/5 text-white h-12 rounded-md px-8 text-lg flex items-center justify-center"
                 >

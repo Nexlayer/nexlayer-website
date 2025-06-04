@@ -5,15 +5,53 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import Script from "next/script";
 import { NotificationProvider } from "@/components/launch-notifications";
-import NotificationsView from "@/components/notification-view"
-import Navbar from "@/components/navbar"
+import NotificationsView from "@/components/notification-view";
+import Navbar from "@/components/navbar";
+import Footer from "@/components/footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Nexlayer - The AI-Native Cloud",
-  description: "Deploy AI products in seconds. No infra. Just deploy.",
-  generator: "v0.dev",
+  metadataBase: new URL("https://nexlayer.com"),
+  title: {
+    template: "%s | Nexlayer",
+    default: "Nexlayer - AI-native Cloud Platform",
+  },
+  description: "Deploy full-stack AI applications in seconds, not weeks. One simple launchfile deploys your entire app stack—frontend, backend, database, vector store, AI model —instantly to production. Built for AI agents, not humans",
+  keywords: "AI deployment, cloud platform, full-stack deployment, AI-native cloud, launchfile, instant deployment, AI agents, nexlayer yaml, AI developer tools, AI cloud infrastructure",
+  openGraph: {
+    title: {
+      template: "%s | Nexlayer",
+      default: "Nexlayer - AI-native Cloud Platform",
+    },
+    description:
+      "Deploy full-stack AI applications in seconds, not weeks. One launchfile. Full stack. Live instantly. Built for the age of AI agents.",
+    type: "website",
+    url: new URL("https://nexlayer.com"),
+    images: [
+      {
+        url: new URL("https://nexlayer.com/og-image.png"),
+        alt: "Nexlayer Open Graph Image",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: "@nexlayer",
+    title: {
+      template: "%s | Nexlayer",
+      default: "Nexlayer - AI-native Cloud Platform",
+    },
+    description:
+      "Deploy full-stack AI applications in seconds, not weeks. One launchfile. Full stack. Live instantly.",
+    creator: "@nexlayer",
+    images: [
+      {
+        url: new URL("https://nexlayer.com/og-image.png"),
+        alt: "Nexlayer Twitter Image",
+      },
+    ],
+  },
 };
 
 export default function RootLayout({
@@ -70,6 +108,7 @@ export default function RootLayout({
           >
             <Navbar />
             {children}
+            <Footer />
             <NotificationsView />
           </ThemeProvider>
         </NotificationProvider>
