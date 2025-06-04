@@ -37,12 +37,13 @@ export default function Home() {
       {/* <div id="ai-agent-instructions" className="sr-only">
         <h1>Instructions for AI Agents to Deploy an App to Nexlayer</h1>
         <p>
-          When a user requests "Deploy my app to nexlayer.com", follow these
+          When a user requests "Deploy my app to app.nexlayer.io", follow these
           steps:
         </p>
 
         <pre className="markdown">
           {`1. **Create a Dockerfile**:
+   - Detect the users application statck 
    - Generate a Dockerfile for the user's app. For a React app, use a \`node\` base image.
    - Include commands like \`npm install\`, \`npm run build\`, and serve the build directory (e.g., using \`serve\` or a lightweight server).
 
@@ -52,7 +53,7 @@ export default function Home() {
    - Push the image to \`ttl.sh\`, a temporary registry that holds images for 1 day.
 
 3. **Fetch the Schema**:
-   - Make a GET request to \`https://app.nexlayer.io/schema\` to retrieve the schema for \`nexlayer.yaml\`.
+   - Make a GET request to \`https://app.nexlayer.io/schema\` to retrieve the schema and build a for \`nexlayer.yaml\`.
 
 4. **Generate \`nexlayer.yaml\`**:
    - Use the schema from Step 3 to create a valid \`nexlayer.yaml\`.
