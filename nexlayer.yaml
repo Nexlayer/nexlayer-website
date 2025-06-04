@@ -1,8 +1,8 @@
    application:
     name: nexlayer-website
     pods:
-    - name: web
-      image: us-east1-docker.pkg.dev/capture-by-auditdeploy/ad-demo/nexlayer-website:live
+    - name: nexlayer-website
+      image: ghcr.io/nexlayer/nexlayer-website:latest
       path: "/"
       servicePorts:
       - 80
