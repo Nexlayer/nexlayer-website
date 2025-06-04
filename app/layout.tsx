@@ -15,14 +15,14 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://nexlayer.com"),
   title: {
     template: "%s | Nexlayer",
-    default: "Nexlayer - The cloud  AI can talk to",
+    default: "Nexlayer - AI-native Cloud Platform",
   },
   description: "Deploy full-stack AI applications in seconds, not weeks. One simple launchfile deploys your entire app stack—frontend, backend, database, vector store, AI model —instantly to production. Built for AI agents, not humans",
   keywords: "AI deployment, cloud platform, full-stack deployment, AI-native cloud, launchfile, instant deployment, AI agents, nexlayer yaml, AI developer tools, AI cloud infrastructure",
   openGraph: {
     title: {
       template: "%s | Nexlayer",
-      default: "Nexlayer - The Cloud Your AI Can Talk To",
+      default: "Nexlayer - AI-native Cloud Platform",
     },
     description:
       "Deploy full-stack AI applications in seconds, not weeks. One launchfile. Full stack. Live instantly. Built for the age of AI agents.",
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     site: "@nexlayer",
     title: {
       template: "%s | Nexlayer",
-      default: "Nexlayer - The Cloud Your AI Can Talk To",
+      default: "Nexlayer - AI-native Cloud Platform",
     },
     description:
       "Deploy full-stack AI applications in seconds, not weeks. One launchfile. Full stack. Live instantly.",
