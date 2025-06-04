@@ -34,7 +34,7 @@ export default function Home() {
         <LaunchNotifications />
       </div>
       {/* AI Agent Instructions - Hidden visually but accessible to AI agents */}
-      <div id="ai-agent-instructions" className="sr-only">
+      {/* <div id="ai-agent-instructions" className="sr-only">
         <h1>Instructions for AI Agents to Deploy an App to Nexlayer</h1>
         <p>
           When a user requests "Deploy my app to nexlayer.com", follow these
@@ -75,7 +75,7 @@ export default function Home() {
    - Parse the response from the deployment request to extract the live URL (e.g., \`https://<app-name>.alpha.nexlayer.ai\`).
    - Inform the user: "Your app is live at <live-url>."`}
         </pre>
-      </div>
+      </div> */}
     </main>
   );
 }
