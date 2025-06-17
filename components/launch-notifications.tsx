@@ -35,7 +35,7 @@ export const NotificationProvider = ({ children }: { children: React.ReactNode }
   const nextIdRef = useRef(1);
   const maxVisibleNotifications = 1;
 
-  const SOCKET_URL = "https://nexlayer.com/";
+  const SOCKET_URL = "https://nexlayer.com";
 
   const handleDeployment = (data: { templateID: string; status: string; timestamp: string }) => {
     const deployment: Deployment = {
@@ -58,6 +58,7 @@ export const NotificationProvider = ({ children }: { children: React.ReactNode }
   useEffect(() => {
     const socket: Socket = io(SOCKET_URL, {
       transports: ["websocket"],
+      path: "/",
     });
 
     socket.on("connect", () => {
