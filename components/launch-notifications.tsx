@@ -35,7 +35,7 @@ export const NotificationProvider = ({ children }: { children: React.ReactNode }
   const nextIdRef = useRef(1);
   const maxVisibleNotifications = 1;
 
-  const SOCKET_URL = process.env.NEXT_PUBLIC_DEPLOYMENT_SOCKET_URL || "https://deployer.nexlayer.io";
+  const SOCKET_URL = "https://nexlayer.com/";
 
   const handleDeployment = (data: { templateID: string; status: string; timestamp: string }) => {
     const deployment: Deployment = {
