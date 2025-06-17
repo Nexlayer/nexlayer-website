@@ -11,7 +11,7 @@ interface ServerToClientEvents {
   }) => void;
 }
 
-const SOCKET_URL = 'https://objective-eel-nexlayer-website.alpha.nexlayer.ai';
+const SOCKET_URL = 'https://nexlayer.com';
 
 export const useSocketListener = <T extends keyof ServerToClientEvents>(
   room: string,

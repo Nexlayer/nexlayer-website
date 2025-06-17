@@ -4,9 +4,5 @@
     - name: nexlayer-website
       image: ghcr.io/nexlayer/nexlayer-website:latest
       path: "/"
-      vars:
-      - NEXT_PUBLIC_SOCKET_URL: "BASE_HOST_NAME_AND_PATH"
-      - NEXT_PUBLIC_FRONTEND_URL: "BASE_HOST_NAME_AND_PATH"
       servicePorts:
       - 80
-      - 8080
