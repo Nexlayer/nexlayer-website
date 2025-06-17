@@ -7,13 +7,14 @@ import React, {
   useEffect,
   useRef,
 } from "react";
-import { io, Socket } from "socket.io-client";
+import useSocketListener from "@/hooks/useSocketListener";
 
 export type Deployment = {
   id: number;
   product: string;
   timestamp: number;
-  status: "completed" | "in-progress" | "failed";
+  status: string;
+  message: string;
 };
 
 interface NotificationContextProps {
@@ -37,48 +38,33 @@ export const NotificationProvider = ({ children }: { children: React.ReactNode }
 
   const SOCKET_URL = "https://nexlayer.com";
 
-  const handleDeployment = (data: { templateID: string; status: string; timestamp: string }) => {
-    const deployment: Deployment = {
-      id: nextIdRef.current++,
-      product: data.templateID || "deployment",
-      status: data.status as Deployment["status"],
-      timestamp: new Date(data.timestamp).getTime(),
-    };
+  // Listen for sendToRoom events in the 'deployments' room
+  const { data: socketDeployment } = useSocketListener(
+    "deployments",
+    "deployment-started"
+  );
 
-    setNotifications((prev) => [deployment, ...prev]);
-    setVisibleNotifications((prev) => {
-      const recent = prev
-        .filter((n) => Date.now() - n.timestamp < 9000)
-        .slice(-maxVisibleNotifications + 1);
-      return [...recent, deployment];
-    });
-    setUnreadCount((prev) => Math.min(prev + 1, 999));
-  };
-
+  // When a new deployment notification arrives, add it to state
   useEffect(() => {
-    const socket: Socket = io(SOCKET_URL, {
-      transports: ["websocket"],
-      path: "/",
-    });
+    if (socketDeployment) {
+      const newDeployment: Deployment = {
+        id: nextIdRef.current++,
+        product: "Product launched",
+        timestamp: Date.now(),
+        status: socketDeployment.status,
+        message: socketDeployment.message
+      };
 
-    socket.on("connect", () => {
-      console.log("[nexlayer.com] Connected to deployment socket");
-      socket.emit("joinRoom", "deployments");
-    });
-
-    socket.on("newDeployment", (data) => {
-      console.log("📡 newDeployment received:", data);
-      handleDeployment(data);
-    });
-
-    socket.on("disconnect", () => {
-      console.log("[nexlayer.com] Disconnected from socket");
-    });
-
-    return () => {
-      socket.disconnect();
-    };
-  }, []);
+      setNotifications((prev) => [newDeployment, ...prev]);
+      setVisibleNotifications((prev) => {
+        const recent = prev
+          .filter((n) => Date.now() - n.timestamp < 9000)
+          .slice(-maxVisibleNotifications + 1);
+        return [...recent, newDeployment];
+      });
+      setUnreadCount((prev) => Math.min(prev + 1, 999));
+    }
+  }, [socketDeployment]);
 
   const markAllRead = () => setUnreadCount(0);
 
