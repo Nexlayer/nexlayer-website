@@ -7,15 +7,13 @@ import React, {
   useEffect,
   useRef,
 } from "react";
+import useSocketListener from "@/hooks/useSocketListener";
 
 export type Deployment = {
   id: number;
   product: string;
-  city: string;
-  country: string;
-  flag: string;
   timestamp: number;
-  status: "completed" | "in-progress" | "failed";
+  status: string;
 };
 
 interface NotificationContextProps {
@@ -37,9 +35,7 @@ export const NotificationProvider = ({
   children: React.ReactNode;
 }) => {
   const [notifications, setNotifications] = useState<Deployment[]>([]);
-  const [visibleNotifications, setVisibleNotifications] = useState<
-    Deployment[]
-  >([]);
+  const [visibleNotifications, setVisibleNotifications] = useState<Deployment[]>([]);
   const [isPanelOpen, setIsPanelOpen] = useState(false);
   const [unreadCount, setUnreadCount] = useState(0);
   const nextIdRef = useRef(0);
@@ -68,74 +64,32 @@ export const NotificationProvider = ({
     "Hong Kong": { country: "Hong Kong", flag: "🇭🇰" },
   };
 
-  const cities = Object.keys(cityToCountry);
-  const products = [
-    "neural network",
-    "AI assistant",
-    "RAG system",
-    "NLP service",
-    "GPT wrapper",
-    "ML model",
-    "analytics dashboard",
-    "vector database",
-    "language model",
-    "AI search engine",
-    "voice assistant",
-    "data pipeline",
-    "image generator",
-    "recommendation engine",
-    "AI chatbot",
-    "AI API",
-    "computer vision app",
-    "AI agent",
-    "LLM app",
-    "code generator",
-  ];
+  // Listen for deployment-started events in the 'deployments' room
+  const { data: socketDeployment } = useSocketListener(
+    "deployments",
+    "deployment-started"
+  );
 
-  const generateNotification = (): Deployment => {
-    const city = cities[Math.floor(Math.random() * cities.length)];
-    const product = products[Math.floor(Math.random() * products.length)];
-    const { country, flag } = cityToCountry[city];
-    const statuses: Deployment["status"][] = [
-      "completed",
-      "in-progress",
-      "failed",
-    ];
-    const status =
-      statuses[Math.floor(Math.random() * (statuses.length - 0.2))];
-
-    return {
-      id: nextIdRef.current++,
-      product,
-      city,
-      country,
-      flag,
-      timestamp: Date.now(),
-      status,
-    };
-  };
-
+  // When a new deployment notification arrives, add it to state
   useEffect(() => {
-    const first = generateNotification();
-    setNotifications([first]);
-    setVisibleNotifications([first]);
-    setUnreadCount(1);
+    if (socketDeployment) {
+      const newDeployment: Deployment = {
+        id: nextIdRef.current++,
+        product: "deployment",
+        timestamp: Date.now(),
+        status: socketDeployment.status,
+      };
 
-    const interval = setInterval(() => {
-      const newNotification = generateNotification();
-
-      setNotifications((prev) => [newNotification, ...prev]);
+      setNotifications((prev) => [newDeployment, ...prev]);
       setVisibleNotifications((prev) => {
         const recent = prev
           .filter((n) => Date.now() - n.timestamp < 9000)
           .slice(-maxVisibleNotifications + 1);
-        return [...recent, newNotification];
+        return [...recent, newDeployment];
       });
       setUnreadCount((prev) => Math.min(prev + 1, 999));
-    }, 8000);
-
-    return () => clearInterval(interval);
-  }, []);
+    }
+  }, [socketDeployment]);
 
   const markAllRead = () => setUnreadCount(0);
 

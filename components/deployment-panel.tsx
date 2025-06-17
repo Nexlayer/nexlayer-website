@@ -13,7 +13,7 @@ interface DeploymentPanelProps {
 }
 
 export default function DeploymentPanel({ isOpen, onClose, deployments }: DeploymentPanelProps) {
-  const [filter, setFilter] = useState<"all" | "completed" | "in-progress" | "failed">("all")
+  const [filter, setFilter] = useState<"all" | string>("all")
   const { markAllRead } = useNotifications()
   const filteredDeployments = deployments.filter((d) => (filter === "all" ? true : d.status === filter))
 
@@ -68,11 +68,17 @@ export default function DeploymentPanel({ isOpen, onClose, deployments }: Deploy
                   {filteredDeployments.map((deployment) => (
                     <div key={deployment.id} className="p-4 hover:bg-white/5">
                       <div className="flex items-center gap-2 mb-1">
-                        <span className="font-medium text-soft-white">Product launched</span>
+                        <span className="font-medium text-soft-white">{deployment.product}</span>
+                        <span className={`text-xs px-2 py-1 rounded-full ${
+                          deployment.status === 'in-progress' ? 'bg-blue-500/20 text-blue-400' :
+                          'bg-green-500/20 text-green-400'
+                        }`}>
+                          {deployment.status}
+                        </span>
                       </div>
                       <div className="flex justify-between text-xs text-muted-gray">
                         <span>
-                          {deployment.city}, {deployment.country}
+                          {deployment.status === 'in-progress' ? 'In Progress' : 'Completed'}
                         </span>
                         <span className="flex items-center gap-1">
                           <Clock className="h-3 w-3" />
