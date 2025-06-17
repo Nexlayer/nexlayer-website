@@ -77,7 +77,7 @@ export const NotificationProvider = ({
     if (socketDeployment) {
       const newDeployment: Deployment = {
         id: nextIdRef.current++,
-        product: "Deployment",
+        product: "Product launched",
         timestamp: Date.now(),
         status: socketDeployment.status,
         message: socketDeployment.message,

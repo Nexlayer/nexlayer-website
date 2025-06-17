@@ -76,12 +76,9 @@ export default function DeploymentPanel({ isOpen, onClose, deployments }: Deploy
                           {deployment.status}
                         </span>
                       </div>
-                      <div className="text-sm text-muted-gray mb-2">
-                        {deployment.message}
-                      </div>
                       <div className="flex justify-between text-xs text-muted-gray">
                         <span>
-                          {deployment.ip}
+                          {deployment.message}
                         </span>
                         <span className="flex items-center gap-1">
                           <Clock className="h-3 w-3" />
