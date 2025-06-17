@@ -7,7 +7,6 @@ interface ServerToClientEvents {
     type: string;
     status: string;
     message: string;
-    ip: string;
   }) => void;
 }
 
