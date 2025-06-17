@@ -12,6 +12,6 @@
     "moduleResolution": "node",
     "types": ["node", "socket.io"]
   },
-  "include": ["lib/socketServer.ts"],
+  "include": ["socketServer.ts"],
   "exclude": ["node_modules"]
 } 

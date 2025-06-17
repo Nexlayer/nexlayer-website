@@ -8,11 +8,12 @@ RUN npm run build
 # Socket.IO build stage
 FROM node:20-alpine AS socket-builder
 WORKDIR /socket
-COPY lib/socketServer.ts .
 COPY package*.json .
 COPY tsconfig.socket.json .
+COPY lib/socketServer.ts .
 RUN npm install --legacy-peer-deps
 RUN npm install -g typescript
+RUN npm install @types/node @types/socket.io --legacy-peer-deps
 RUN tsc --project tsconfig.socket.json
 
 # Production stage
