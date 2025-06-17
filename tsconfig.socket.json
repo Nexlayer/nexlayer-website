@@ -9,8 +9,9 @@
     "forceConsistentCasingInFileNames": true,
     "outDir": "./dist",
     "rootDir": ".",
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "types": ["node", "socket.io"]
   },
-  "include": ["socketServer.ts"],
+  "include": ["lib/socketServer.ts"],
   "exclude": ["node_modules"]
 } 

@@ -40,10 +40,9 @@ io.on('connection', (socket: Socket) => {
 
   // Handle deployment events
   socket.on('sendToRoom', (data: DeploymentData) => {
-    const room = data.room;
-    delete data.room;
-    console.log('Received deployment event:', data);
-    io.to(room).emit('deployment-started', data);
+    const { room, ...deploymentData } = data;
+    console.log('Received deployment event:', deploymentData);
+    io.to(room).emit('deployment-started', deploymentData);
   });
 
   socket.on('disconnect', () => {
