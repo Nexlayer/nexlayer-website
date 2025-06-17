@@ -10,7 +10,6 @@ import Footer from "@/components/footer";
 import { Background } from "@/components/background";
 import Navbar from "@/components/navbar";
 import EnterpriseCTA from "@/components/enterprise-cta";
-import LaunchNotifications from "@/components/launch-notifications";
 
 export default function Home() {
   return (
@@ -31,7 +30,6 @@ export default function Home() {
         <Pricing />
         <JoinMovement />
         <EnterpriseCTA />
-        <LaunchNotifications />
       </div>
       {/* AI Agent Instructions - Hidden visually but accessible to AI agents */}
       {/* <div id="ai-agent-instructions" className="sr-only">
