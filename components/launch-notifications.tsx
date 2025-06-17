@@ -14,6 +14,8 @@ export type Deployment = {
   product: string;
   timestamp: number;
   status: string;
+  message: string;
+  ip: string;
 };
 
 interface NotificationContextProps {
@@ -64,7 +66,7 @@ export const NotificationProvider = ({
     "Hong Kong": { country: "Hong Kong", flag: "🇭🇰" },
   };
 
-  // Listen for deployment-started events in the 'deployments' room
+  // Listen for sendToRoom events in the 'deployments' room
   const { data: socketDeployment } = useSocketListener(
     "deployments",
     "deployment-started"
@@ -75,9 +77,11 @@ export const NotificationProvider = ({
     if (socketDeployment) {
       const newDeployment: Deployment = {
         id: nextIdRef.current++,
-        product: "deployment",
+        product: "Deployment",
         timestamp: Date.now(),
         status: socketDeployment.status,
+        message: socketDeployment.message,
+        ip: socketDeployment.ip,
       };
 
       setNotifications((prev) => [newDeployment, ...prev]);

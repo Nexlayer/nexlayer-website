@@ -10,10 +10,10 @@ FROM node:20-alpine AS socket-builder
 WORKDIR /socket
 COPY lib/socketServer.ts .
 COPY package*.json .
-COPY tsconfig.json .
+COPY tsconfig.socket.json .
 RUN npm install --legacy-peer-deps
 RUN npm install -g typescript
-RUN tsc socketServer.ts
+RUN tsc --project tsconfig.socket.json
 
 # Production stage
 FROM nginx:alpine
@@ -21,7 +21,7 @@ FROM nginx:alpine
 RUN apk add --update nodejs npm
 
 # Copy Socket.IO server files
-COPY --from=socket-builder /socket/socketServer.js /socket/
+COPY --from=socket-builder /socket/dist/socketServer.js /socket/
 COPY --from=socket-builder /socket/node_modules /socket/node_modules
 
 # Copy Nginx configuration

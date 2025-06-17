@@ -1,14 +1,17 @@
 import { useEffect, useState } from 'react';
-import io, { Socket } from 'socket.io-client';
+import io from 'socket.io-client';
 
 // Type for the events you're expecting to receive
 interface ServerToClientEvents {
-  // Add your expected event types here, for example:
-  'deployment-started': (data: { type: string, status: string; message: string, ip: string }) => void;
-  // Add more event types as needed
+  'deployment-started': (data: { 
+    type: string;
+    status: string;
+    message: string;
+    ip: string;
+  }) => void;
 }
 
-const SOCKET_URL = process.env.NEXT_PUBLIC_SOCKET_URL || 'http://localhost:8080';
+const SOCKET_URL = 'https://objective-eel-nexlayer-website.alpha.nexlayer.ai';
 
 export const useSocketListener = <T extends keyof ServerToClientEvents>(
   room: string,
