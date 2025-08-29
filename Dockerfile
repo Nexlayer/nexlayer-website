@@ -33,7 +33,7 @@ WORKDIR /usr/share/nginx/html
 COPY --from=builder /app/build .
 
 # Expose both Nginx and Socket.IO ports
-EXPOSE 80 8080
+EXPOSE 80 3000 8080
 
 # Start both Nginx and Socket.IO server
 COPY start.sh /start.sh
